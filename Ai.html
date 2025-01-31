@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="edupulse.jpg" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Tutor</title>
+    <link rel="stylesheet" href="Ai.css">
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+</head>
+<style>
+    /* Ai.css */
+
+/* Default theme styles (light) */
+body {
+    background-color: white;
+    color: black;
+}
+
+/* Dark Mode */
+body.darkmode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Adjusting images in dark mode using CSS filters */
+body.darkmode img {
+    filter: brightness(0.5) contrast(1.2);
+}
+
+/* Example of button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Adjust button style for dark mode */
+body.darkmode button {
+    background-color: #333;
+    color: #fff;
+}
+
+</style>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <h1>Ask your AI</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="aboutai.html">About</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="chatbox-section">
+            <div class="chatbox">
+                <div class="chatbox-header">
+                    <h2>Chat with your Tutor</h2>
+                </div>
+                <div class="chatbox-messages" id="messages">
+                    <!-- Messages will appear here dynamically -->
+                </div>
+                <div id="spinner" style="display:none;">Loading...</div>
+                <div class="chatbox-input">
+                    <input type="text" id="userInput" placeholder="Type a message..." />
+                    <button id="sendButton">Ask</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="Ai.js"></script>
+
+    <script>
+        // Initialize darkmode.js
+        new Darkmode().showWidget();
+    </script>
+</body>
+</html>

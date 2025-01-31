@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="edupulse.jpg" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science Quiz</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 350px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .quiz-question {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      margin: 10px 0;
+    }
+
+    .option {
+      margin: 5px;
+      padding: 12px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .option:hover {
+      background-color: #218838;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .theme-btn {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .theme-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Dark Theme */
+    .dark-theme {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .dark-theme .container {
+      background-color: #444;
+      color: #fff;
+    }
+
+    .dark-theme .option {
+      background-color: #555;
+    }
+
+    .dark-theme .option:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Science Quiz</h1>
+    <div class="quiz">
+      <div class="quiz-question" id="question"></div>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="result" id="result"></div>
+    <button class="theme-btn" onclick="toggleTheme()">Toggle Dark/Light Theme</button>
+  </div>
+
+  <script>
+    let body = document.body;
+    let questionElement = document.getElementById('question');
+    let optionsElement = document.getElementById('options');
+    let resultElement = document.getElementById('result');
+    
+    function generateRandomQuestion() {
+      const scienceQuestions = [
+        {
+          question: 'What is the chemical symbol for water?',
+          options: ['H2O', 'O2', 'CO2', 'H2'],
+          answer: 'H2O'
+        },
+        {
+          question: 'Which planet is known as the Red Planet?',
+          options: ['Mars', 'Venus', 'Earth', 'Jupiter'],
+          answer: 'Mars'
+        },
+        {
+          question: 'What is the powerhouse of the cell?',
+          options: ['Nucleus', 'Mitochondria', 'Endoplasmic Reticulum', 'Golgi Apparatus'],
+          answer: 'Mitochondria'
+        },
+        {
+          question: 'Who developed the theory of relativity?',
+          options: ['Isaac Newton', 'Albert Einstein', 'Galileo Galilei', 'Niels Bohr'],
+          answer: 'Albert Einstein'
+        },
+        {
+          question: 'What is the chemical formula for methane?',
+          options: ['CH4', 'CO2', 'C2H6', 'CH3OH'],
+          answer: 'CH4'
+        },
+        {
+          question: 'What is the most common gas in Earth\'s atmosphere?',
+          options: ['Oxygen', 'Carbon Dioxide', 'Nitrogen', 'Hydrogen'],
+          answer: 'Nitrogen'
+        },
+        {
+          question: 'What is the unit of force?',
+          options: ['Joule', 'Newton', 'Pascal', 'Watt'],
+          answer: 'Newton'
+        },
+        {
+          question: 'Which organ in the human body is responsible for pumping blood?',
+          options: ['Liver', 'Lungs', 'Heart', 'Kidneys'],
+          answer: 'Heart'
+        }
+      ];
+
+      // Pick a random question from the list
+      const question = scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)];
+
+      // Display the question and options
+      questionElement.textContent = question.question;
+      optionsElement.innerHTML = question.options
+        .map(option => `<button class="option" onclick="checkAnswer('${option}', '${question.answer}')">${option}</button>`)
+        .join('');
+    }
+
+    function checkAnswer(selectedAnswer, correctAnswer) {
+      if (selectedAnswer === correctAnswer) {
+        resultElement.textContent = 'Correct!';
+        resultElement.style.color = '#28a745'; // Green
+      } else {
+        resultElement.textContent = 'Incorrect!';
+        resultElement.style.color = '#dc3545'; // Red
+      }
+      setTimeout(() => {
+        resultElement.textContent = '';
+        generateRandomQuestion(); // Generate a new question after 2 seconds
+      }, 1500);
+    }
+
+    function toggleTheme() {
+      body.classList.toggle('dark-theme');
+    }
+
+    // Initialize the quiz with a random question on page load
+    generateRandomQuestion();
+  </script>
+
+  <!-- Bootstrap JS and Popper.js (optional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
